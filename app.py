@@ -20,7 +20,7 @@ def generate_buzz():
     page += '</h1></body></html>'
     return page
 
-@app.route("/unitconversion"):
+@app.route("/unitconversion")
 def unitconversion():
     form = MyForm()
     if form.validate_on_submit():
