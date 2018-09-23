@@ -10,6 +10,7 @@ class MyForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
 
 app = Flask(__name__)
+app.secret_key = 'development key'
 
 signal.signal(signal.SIGINT, lambda s, f: os._exit(0))
 
