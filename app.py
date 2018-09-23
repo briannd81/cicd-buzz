@@ -23,8 +23,6 @@ def generate_buzz():
 @app.route("/unitconversion")
 def unitconversion():
     form = MyForm()
-    if form.validate_on_submit():
-        return redirect('/success')
     return render_template('submit.html', form=form)
     
 
