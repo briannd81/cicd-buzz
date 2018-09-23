@@ -25,6 +25,10 @@ def generate_buzz():
 def unitconversion():
     form = MyForm()
     return render_template('submit.html', form=form)
+
+@app.route("/submit")
+def submit():
+    return "submit page"
     
 
 
