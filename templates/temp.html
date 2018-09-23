@@ -1,0 +1,27 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message[1] }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+<form action="" method="POST">
+  <div class="input text">
+    {{ form.input_temp.label }}: {{ form.input_temp }}
+  </div>
+  <div>
+     {{ form.input_unit.label }}: {{ form.input_unit }}
+  </div>
+  <div>
+     {{ form.target_unit.label }}: {{ form.target_unit }}
+  </div>
+  <div class="input text">
+    {{ form.student_response.label }}: {{ form.student_response }}
+  </div>
+  <div class="input submit">
+    <input type="submit" value="Submit" />
+  </div>
+</form>
