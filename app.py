@@ -52,7 +52,10 @@ def check_student_answer(input_temp, input_unit, target_unit, student_response):
     else:
         converted_value=None
 
-    return 'correct' if math.ceil(converted_value) == math.ceil(student_response) else ("incorrect. The correct answer is " + str(math.ceil(converted_value)))
+    msg = 'The student response is'
+    msg += 'correct.' if math.ceil(converted_value) == math.ceil(student_response) else ("incorrect. The correct answer is " + str(math.ceil(converted_value)))
+
+    return msg
 
 @app.route("/", methods=['GET', 'POST'])
 def temp():
@@ -62,7 +65,7 @@ def temp():
             if request.form['input_unit'] == request.form['target_unit']:
                 flash("Input Unit and Target Unit must be different type")
             else:
-                flash("The student response is " + check_student_answer(float(request.form['input_temp']), request.form['input_unit'], request.form['target_unit'], float(request.form['student_response'])))
+                flash(check_student_answer(float(request.form['input_temp']), request.form['input_unit'], request.form['target_unit'], float(request.form['student_response'])))
         else:
             flash('All fields required.')
 
