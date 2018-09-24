@@ -59,7 +59,10 @@ def temp():
     form = MyForm(request.form)
     if request.method == 'POST':
         if form.validate():
-            flash("The student response is " + check_student_answer(float(request.form['input_temp']), request.form['input_unit'], request.form['target_unit'], float(request.form['student_response'])))
+            if request.form['input_unit'] == request.form['target_unit']:
+                flash("Input Unit and Target Unit must be different type")
+            else:
+                flash("The student response is " + check_student_answer(float(request.form['input_temp']), request.form['input_unit'], request.form['target_unit'], float(request.form['student_response'])))
         else:
             flash('All fields required.')
 
