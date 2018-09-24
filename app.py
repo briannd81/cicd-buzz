@@ -5,7 +5,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 
 DEBUG = True
 app = Flask(__name__)
-app.secret_key = 'development key'
+app.secret_key = b'?]\A_??l?s??de?'
 
 TEMP_UNITS = [('Kelvin', 'Kelvin'), ('Celsius', 'Celsius'), ('Fahrenheit', 'Fahrenheit'), ('Rankine', 'Rankine')]
 
