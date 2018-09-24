@@ -64,6 +64,8 @@ def temp():
         if form.validate():
             if request.form['input_unit'] == request.form['target_unit']:
                 flash("Input Unit and Target Unit must be different type")
+            elif not isinstance(math.round(request.form['input_temp'])):
+                flash("Input Temperature invalid.")
             else:
                 flash(check_student_answer(float(request.form['input_temp']), request.form['input_unit'], request.form['target_unit'], float(request.form['student_response'])))
         else:
