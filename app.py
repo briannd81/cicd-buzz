@@ -60,7 +60,7 @@ def check_student_answer(input_temp, input_unit, target_unit, student_response):
     else:
         converted_value=None
 
-    return 'correct' if math.ceil(converted_value) == math.ceil(student_response) else ("incorrect. The correct answer is " + str(converted_value))
+    return 'correct' if math.ceil(converted_value) == math.ceil(student_response) else ("incorrect. The correct answer is " + str(math.ceil(converted_value)))
 
 @app.route("/temp", methods=['GET', 'POST'])
 def temp():
