@@ -1,7 +1,6 @@
 import os, signal, math
 from flask import Flask, render_template, flash, request
-from buzz import generator
-from tools import temp_conversion
+from tools import tempconversion
 from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField, SelectField
 
 DEBUG = True
@@ -20,49 +19,42 @@ class MyForm(Form):
 
 signal.signal(signal.SIGINT, lambda s, f: os._exit(0))
 
-@app.route("/")
-def generate_buzz():
-    page = '<html><body><h1>'
-    page += generator.generate_buzz()
-    page += '</h1></body></html>'
-    return page
-
 def check_student_answer(input_temp, input_unit, target_unit, student_response):
 
     if input_unit == 'Celsius':
       if target_unit == 'Fahrenheit':
-        converted_value=temp_conversion.celsius_to_fahrenheit(input_temp)
+        converted_value=tempconversion.celsius_to_fahrenheit(input_temp)
       elif target_unit == 'Kelvin':
-        converted_value=temp_conversion.celsius_to_kelvin(input_temp)
+        converted_value=tempconversion.celsius_to_kelvin(input_temp)
       elif target_unit == 'Rankine':
-        converted_value=temp_conversion.celsius_to_rankine(input_temp)
+        converted_value=tempconversion.celsius_to_rankine(input_temp)
     elif input_unit == 'Fahrenheit':
       if target_unit == 'Celsius':
-        converted_value=temp_conversion.fahrenheit_to_celsius(input_temp)
+        converted_value=tempconversion.fahrenheit_to_celsius(input_temp)
       elif target_unit == 'Kelvin':
-        converted_value=temp_conversion.fahrenheit_to_kelvin(input_temp)
+        converted_value=tempconversion.fahrenheit_to_kelvin(input_temp)
       elif target_unit == 'Rankine':
-        converted_value=temp_conversion.fahrenheit_to_rankine(input_temp)
+        converted_value=tempconversion.fahrenheit_to_rankine(input_temp)
     elif input_unit == 'Kelvin':
       if target_unit == 'Celsius':
-        converted_value=temp_conversion.kelvin_to_celsius(input_temp)
+        converted_value=tempconversion.kelvin_to_celsius(input_temp)
       elif target_unit == 'Fahrenheit':
-        converted_value=temp_conversion.kelvin_to_fahrenheit(input_temp)
+        converted_value=tempconversion.kelvin_to_fahrenheit(input_temp)
       elif target_unit == 'Rankine':
-        converted_value=temp_conversion.kelvin_to_rankine(input_temp)
+        converted_value=tempconversion.kelvin_to_rankine(input_temp)
     elif input_unit == 'Rankine':
       if target_unit == 'Celsius':
-        converted_value=temp_conversion.rankine_to_celsius(input_temp)
+        converted_value=tempconversion.rankine_to_celsius(input_temp)
       elif target_unit == 'Fahrenheit':
-        converted_value=temp_conversion.rankine_to_fahrenheit(input_temp)
+        converted_value=tempconversion.rankine_to_fahrenheit(input_temp)
       elif target_unit == 'Kelvin':
-        converted_value=temp_conversion.rankine_to_kelvin(input_temp)
+        converted_value=tempconversion.rankine_to_kelvin(input_temp)
     else:
         converted_value=None
 
     return 'correct' if math.ceil(converted_value) == math.ceil(student_response) else ("incorrect. The correct answer is " + str(math.ceil(converted_value)))
 
-@app.route("/temp", methods=['GET', 'POST'])
+@app.route("/", methods=['GET', 'POST'])
 def temp():
     form = MyForm(request.form)
     if request.method == 'POST':
@@ -71,7 +63,7 @@ def temp():
         else:
             flash('All fields required.')
 
-    return render_template('temp.html', form=form)
+    return render_template('temperature.html', form=form)
 
 
 if __name__ == "__main__":

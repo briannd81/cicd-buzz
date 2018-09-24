@@ -1,20 +1,50 @@
-import unittest
+import unittest, math
+from tools import tempconversion
 
-from buzz import generator
+def test_kelvin_to_fahrenheit():
+    t_to_k = math.ceil(tempconversion.kelvin_to_fahrenheit(4))
+    assert t_to_k == -452
 
-def test_sample_single_word():
-    l = ('foo', 'bar', 'foobar')
-    word = generator.sample(l)
-    assert word in l
+def test_kelvin_to_celsius():
+    t_to_k = math.ceil(tempconversion.kelvin_to_celsius(4))
+    assert t_to_k == -269
 
-def test_sample_multiple_words():
-    l = ('foo', 'bar', 'foobar')
-    words = generator.sample(l, 2)
-    assert len(words) == 2
-    assert words[0] in l
-    assert words[1] in l
-    assert words[0] is not words[1]
+def test_kelvin_to_rankine():
+    t_to_k = math.ceil(tempconversion.kelvin_to_rankine(4))
+    assert t_to_k == 8
 
-def test_generate_buzz_of_at_least_five_words():
-    phrase = generator.generate_buzz()
-    assert len(phrase.split()) >= 5
+def test_rankine_to_fahrenheit():
+    t_to_k = math.ceil(tempconversion.rankine_to_fahrenheit(4))
+    assert t_to_k == -455
+
+def test_rankine_to_celsius():
+    t_to_k = math.ceil(tempconversion.rankine_to_celsius(4))
+    assert t_to_k == -270
+
+def test_rankine_to_kelvin():
+    t_to_k = math.ceil(tempconversion.rankine_to_kelvin(4))
+    assert t_to_k == 3
+
+def test_celsius_to_kelvin():
+    t_to_k = math.ceil(tempconversion.celsius_to_kelvin(4))
+    assert t_to_k == 278
+
+def test_celsius_to_rankine():
+    t_to_k = math.ceil(tempconversion.celsius_to_rankine(4))
+    assert t_to_k == 499
+
+def test_celsius_to_fahrenheit():
+    t_to_k = math.ceil(tempconversion.celsius_to_fahrenheit(4))
+    assert t_to_k == 40
+
+def test_fahrenheit_to_kelvin():
+    t_to_k = math.ceil(tempconversion.fahrenheit_to_kelvin(4))
+    assert t_to_k == 258
+
+def test_fahrenheit_to_celsius():
+    t_to_k = math.ceil(tempconversion.fahrenheit_to_celsius(4))
+    assert t_to_k == -15
+
+def test_fahrenheit_to_rankine():
+    t_to_k = math.ceil(tempconversion.fahrenheit_to_rankine(4))
+    assert t_to_k == 464
