@@ -52,10 +52,32 @@ def check_student_answer(input_temp, input_unit, target_unit, student_response):
     else:
         converted_value=None
 
-    msg = 'The student response is'
-    msg += 'correct.' if math.ceil(converted_value) == math.ceil(student_response) else ("incorrect. The correct answer is " + str(math.ceil(converted_value)))
+    msg = 'The student response is '
+    msg += 'correct.' if converted_value == student_response else ("incorrect. The correct answer is " + str(converted_value))
 
     return msg
+
+def is_float(input):
+    try:
+        assert float(input)
+    except:
+        return False
+
+    return True
+
+def is_int(input):
+    try:
+        assert int(input) 
+    except:
+        return False
+
+    return True
+
+def is_numeric(input):
+    if is_float(input) or is_int(input):
+        return True
+    else:
+        return False
 
 @app.route("/", methods=['GET', 'POST'])
 def temp():
@@ -64,8 +86,10 @@ def temp():
         if form.validate():
             if request.form['input_unit'] == request.form['target_unit']:
                 flash("Input Unit and Target Unit must be different type")
-            elif not isinstance(math.round(request.form['input_temp'])):
+            elif not is_numeric(request.form['input_temp']):
                 flash("Input Temperature invalid.")
+            elif not is_numeric(request.form['student_response']):
+                flash("The student response is incorrect.")
             else:
                 flash(check_student_answer(float(request.form['input_temp']), request.form['input_unit'], request.form['target_unit'], float(request.form['student_response'])))
         else:
