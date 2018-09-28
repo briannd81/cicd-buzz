@@ -38,3 +38,4 @@ LOCAL DEVELOPMENT DEPLOYMENT
 3. Use web browser to access your app using the ip address of your machine and port 5000, i.e. http://10.5.5.19:5000
 4. You can also launch the docker image straight from Docker Hub: docker run -p5000:5000 --rm -it <YOUR_DOCKER_USERNAME>/<YOUR_IMAGE_NAME>:latest
 
+
